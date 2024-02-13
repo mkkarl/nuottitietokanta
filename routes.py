@@ -1,6 +1,7 @@
 from app import app
 from flask import redirect, render_template, request, session
 import users
+import sheets
 
 @app.route("/")
 def index():
@@ -41,3 +42,15 @@ def register():
             return redirect("/")
         else:
             return render_template("error.html", message="Rekisteröinti ei onnistunut")
+        
+@app.route("/new_sheet_collection", methods=["GET", "POST"])
+def new_sheet_collection():
+    if request.method == "GET":
+        return render_template("new_sheet_collection.html")
+    if request.method == "POST":
+        collection_name = request.form["collection_name"]
+        collection_type = request.form["collection_type"]
+        if sheets.new_collection(collection_name, collection_type):
+            return redirect("/")
+        else:
+            return render_template("error.html", message="Uuden kokoelman luonti ei onnistunut")

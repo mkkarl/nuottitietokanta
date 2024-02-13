@@ -9,7 +9,7 @@ Käyttäjä voi tallentaa nuottitietokantaan tiedot omistamistaan nuoteista ja n
 - [x] Käyttäjä voi luoda tunnuksen
 - [x] Käyttäjä voi kirjautua
 
-- [ ] Käyttäjä voi luoda nuottikokoelman
+- [x] Käyttäjä voi luoda nuottikokoelman
 - [ ] Käyttäjä voi lisätä nuotin nuottikokoelmaan
 - [ ] Käyttäjä voi lisätä useamman nuotin nuottikokoelmaan
 - [ ] Käyttäjä voi selata nuotteja

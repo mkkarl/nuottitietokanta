@@ -3,3 +3,9 @@ CREATE TABLE users (
     username TEXT, 
     password TEXT
     );
+
+CREATE TABLE sheet_collection (
+    id SERIAL PRIMARY KEY,
+    name TEXT,
+    type TEXT
+);
