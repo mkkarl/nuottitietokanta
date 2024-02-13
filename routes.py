@@ -23,7 +23,7 @@ def login():
 
 @app.route("/logout")
 def logout():
-    del session["username"]
+    users.logout()
     return redirect("/")
 
 @app.route("/register", methods=["GET", "POST"])
