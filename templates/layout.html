@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<title>Nuottitietokanta - {% block title %}{% endblock %}</title>
+<h1>Nuottitietokanta</h1>
+<a href="/">Etusivu</a>
+
+<p>Olet kirjautunut käyttäjänimellä <b>{{ session.username }}</b></p> 
+<a href="/logout">Kirjaudu ulos</a>
+<hr>
+{% block content %}{% endblock %}

@@ -17,6 +17,7 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
         if users.login(username, password):
+            session["username"] = username
             return redirect("/")
         else:
             return render_template("error.html", message="Väärä tunnus tai salasana")
