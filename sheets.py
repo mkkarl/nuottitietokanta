@@ -10,3 +10,13 @@ def new_collection(collection_name, collection_type):
     except:
         return False
     return True
+
+def get_collections():
+    try:
+        sql = text("SELECT id, name, type FROM sheet_collection")
+        result = db.session.execute(sql)
+        collections = result.fetchall()
+        return collections
+    except:
+        return False
+    

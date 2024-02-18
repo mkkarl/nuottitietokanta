@@ -54,3 +54,8 @@ def new_sheet_collection():
             return redirect("/")
         else:
             return render_template("error.html", message="Uuden kokoelman luonti ei onnistunut")
+        
+@app.route("/sheet_collections", methods=["GET"])
+def get_sheet_collections():
+    collections = sheets.get_collections()
+    return render_template("sheet_collections.html", collections=collections)
