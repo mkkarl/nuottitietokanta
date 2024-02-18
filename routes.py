@@ -59,3 +59,8 @@ def new_sheet_collection():
 def get_sheet_collections():
     collections = sheets.get_collections()
     return render_template("sheet_collections.html", collections=collections)
+
+@app.route("/sheet_collections/<int:id>", methods=["GET"])
+def get_sheet_collection(id):
+    collection = sheets.get_collection(id)
+    return render_template("sheet_collection.html", collection=collection)

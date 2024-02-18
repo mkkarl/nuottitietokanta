@@ -20,3 +20,12 @@ def get_collections():
     except:
         return False
     
+def get_collection(id):
+    try:
+        sql = text("SELECT id, name, type FROM sheet_collection WHERE id=:id")
+        result = db.session.execute(sql, {"id":id})
+        collection = result.fetchone()
+        return collection
+    except:
+        return False
+    
