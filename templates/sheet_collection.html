@@ -7,4 +7,31 @@
 <p>Kokoelman nimi: {{ collection.name }}</p>
 <p>Kokoelman tyyppi: {{ collection.type }}</p>
 
+<h3>Kokoelman nuotit</h3>
+
+<table>
+    <tr>
+        <th>Nimi</th>
+        <th>Säveltäjä</th>
+        <th>Sanoittaja</th>
+        <th>Sovittaja</th>
+        <th>Tekijä</th>
+        <th>Esittäjä</th>
+    </tr>
+
+    {% for sheet in coll_sheets %}
+    <tr>
+        <td>{{ sheet.name }}</td>
+        <td>{{ sheet.composer }}</td>
+        <td>{{ sheet.writer }}</td>
+        <td>{{ sheet.arranger }}</td>
+        <td>{{ sheet.creator }}</td>
+        <td>{{ sheet.artist }}</td>     
+    </tr>
+    {% endfor %}
+
+</table>
+
+
+
 {% endblock %}

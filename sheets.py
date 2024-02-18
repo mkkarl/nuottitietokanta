@@ -28,4 +28,13 @@ def get_collection(id):
         return collection
     except:
         return False
-    
+
+def get_sheets(collection_id):
+    try:
+        sql = text("SELECT id, name, composer, writer, arranger, creator, artist FROM sheet " \
+                   "WHERE collection_id=:collection_id")
+        result = db.session.execute(sql, {"collection_id":collection_id})
+        coll_sheets = result.fetchall()
+        return coll_sheets
+    except:
+        return False
