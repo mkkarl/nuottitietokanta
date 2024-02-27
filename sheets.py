@@ -38,3 +38,13 @@ def get_sheets(collection_id):
         return coll_sheets
     except:
         return False
+    
+def new_sheet(collection_id, name, composer, writer, arranger, creator, artist):
+    try:
+        sql = text("""INSERT INTO sheet (collection_id, name, composer, writer, arranger, creator, artist)
+                   VALUES (:collection_id, :name, :composer, :writer, :arranger, :creator, :artist)""")
+        db.session.execute(sql, {"collection_id":collection_id, "name":name, "composer":composer, "writer":writer, "arranger":arranger, "creator":creator, "artist":artist})
+        db.session.commit()
+    except:
+        return False
+    return True

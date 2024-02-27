@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block title %}Lisää nuotti kokoelmaan{% endblock %}
+{% block content %}
+
+<h2>Lisää nuotti kokoelmaan</h2>
+
+<p>Kokoelman nimi: {{ collection.name }}</p>
+<p>Kokoelman tyyppi: {{ collection.type }}</p>
+
+<form action="/sheet_collections/{{ collection.id }}/new_sheet" method="post">
+    Kappale: <input type="text" name="name"><br>
+    Säveltäjä: <input type="text" name="composer"><br>
+    Sanoittaja: <input type="text" name="writer"><br>
+    Sovitus: <input type="text" name="arranger"><br>
+    Tekijä: <input type="text" name="creator"><br>
+    Esittäjä: <input type="text" name="artist"><br>
+    <input type="submit" value="Luo nuotti">
+</form>
+
+{% endblock %}

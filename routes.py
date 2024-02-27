@@ -65,3 +65,20 @@ def get_sheet_collection(id):
     collection = sheets.get_collection(id)
     coll_sheets = sheets.get_sheets(id)
     return render_template("sheet_collection.html", collection=collection, coll_sheets=coll_sheets)
+
+@app.route("/sheet_collections/<int:id>/new_sheet", methods=["GET", "POST"])
+def new_sheet(id):
+    if request.method == "GET":
+        collection = sheets.get_collection(id)
+        return render_template("new_sheet.html", collection=collection)
+    if request.method == "POST":
+        name = request.form["name"]
+        composer = request.form["composer"]
+        writer = request.form["writer"]
+        arranger = request.form["arranger"]
+        creator = request.form["creator"]
+        artist = request.form["artist"]
+        if sheets.new_sheet(id, name, composer, writer, arranger, creator, artist):
+            return redirect(f"/sheet_collections/{id}")
+        else:
+            return render_template("error.html", message="Uuden nuotin luonti ei onnistunut")
