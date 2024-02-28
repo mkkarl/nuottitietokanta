@@ -11,8 +11,8 @@ Käyttäjä voi tallentaa nuottitietokantaan tiedot omistamistaan nuoteista ja n
 
 - [x] Käyttäjä voi luoda nuottikokoelman
 - [x] Käyttäjä voi lisätä nuotin nuottikokoelmaan
-- [ ] Käyttäjä voi lisätä useamman nuotin nuottikokoelmaan
-- [ ] Käyttäjä voi selata nuotteja
+- [ ] Käyttäjä voi lisätä kerralla useamman nuotin nuottikokoelmaan
+- [x] Käyttäjä voi selata nuotteja
 - [x] Käyttäjä voi selata nuottikokoelmia
 - [ ] Käyttäjä voi hakea nuotteja
     - [ ] nimi

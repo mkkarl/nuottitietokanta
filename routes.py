@@ -82,3 +82,8 @@ def new_sheet(id):
             return redirect(f"/sheet_collections/{id}")
         else:
             return render_template("error.html", message="Uuden nuotin luonti ei onnistunut")
+
+@app.route("/sheets", methods=["GET"])
+def get_sheets():
+    all_sheets = sheets.get_all_sheets()
+    return render_template("sheets.html", sheets=all_sheets)

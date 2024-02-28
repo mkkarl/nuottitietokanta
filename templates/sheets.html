@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block title %}Etusivu{% endblock %}
+{% block content %}
+
+<h2>Selaa nuotteja</h2>
+
+<h3>Nuotit</h3>
+
+<table>
+    <tr>
+        <th>Nimi</th>
+        <th>Säveltäjä</th>
+        <th>Sanoittaja</th>
+        <th>Sovittaja</th>
+        <th>Tekijä</th>
+        <th>Esittäjä</th>
+        <th>Kokoelma</th>
+    </tr>
+
+    {% for sheet in sheets %}
+    <tr>
+        <td>{{ sheet.name }}</td>
+        <td>{{ sheet.composer }}</td>
+        <td>{{ sheet.writer }}</td>
+        <td>{{ sheet.arranger }}</td>
+        <td>{{ sheet.creator }}</td>
+        <td>{{ sheet.artist }}</td>
+        <td><a href="/sheet_collections/{{ sheet.coll_id }}">{{ sheet.coll_name }}</a></td></td>     
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}

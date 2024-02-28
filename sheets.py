@@ -48,3 +48,14 @@ def new_sheet(collection_id, name, composer, writer, arranger, creator, artist):
     except:
         return False
     return True
+
+def get_all_sheets():
+    try:
+        sql = text("SELECT S.id, S.name, S.composer, S.writer, S.arranger, S.creator, S.artist, C.id AS coll_id, C.name AS coll_name " \
+                   "FROM sheet S, sheet_collection C " \
+                   "WHERE S.collection_id = C.id")
+        result = db.session.execute(sql)
+        coll_sheets = result.fetchall()
+        return coll_sheets
+    except:
+        return False
