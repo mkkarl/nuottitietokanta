@@ -15,6 +15,7 @@
     Tekijä: <input type="text" name="creator"><br>
     Esittäjä: <input type="text" name="artist"><br>
     <input type="submit" value="Luo nuotti">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
 
 {% endblock %}

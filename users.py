@@ -1,7 +1,8 @@
-from flask import session
+from flask import abort, request, session
 from sqlalchemy import text
 from werkzeug.security import check_password_hash, generate_password_hash
 from db import db
+import os
 
 def login(username, password):
     sql = text("SELECT id, password FROM users WHERE username=:username")
@@ -12,6 +13,7 @@ def login(username, password):
     else:
         if check_password_hash(user.password, password):
             session["user_id"] = user.id
+            session["csrf_token"] = os.urandom(16).hex()
             return True
         else:
             return False
@@ -31,3 +33,7 @@ def register(username, password):
     except:
         return False
     return login(username, password)
+
+def check_csrf():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)

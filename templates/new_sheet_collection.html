@@ -13,6 +13,7 @@
     <option value="loose"> irtolehtikokoelma
     <option value="electronic"> sähköinen kokoelma
     </select>
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     <input type="submit" value="Luo kokoelma">
 </form>
 

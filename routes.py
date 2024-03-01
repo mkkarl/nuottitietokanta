@@ -48,6 +48,7 @@ def new_sheet_collection():
     if request.method == "GET":
         return render_template("new_sheet_collection.html")
     if request.method == "POST":
+        users.check_csrf()
         collection_name = request.form["collection_name"]
         collection_type = request.form["collection_type"]
         if sheets.new_collection(collection_name, collection_type):
@@ -72,6 +73,7 @@ def new_sheet(id):
         collection = sheets.get_collection(id)
         return render_template("new_sheet.html", collection=collection)
     if request.method == "POST":
+        users.check_csrf()
         name = request.form["name"]
         composer = request.form["composer"]
         writer = request.form["writer"]
