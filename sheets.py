@@ -59,3 +59,38 @@ def get_all_sheets():
         return coll_sheets
     except:
         return False
+    
+def add_collection_owner(user_id, collection_id):
+    try:
+        sql = text("""INSERT INTO collection_owner (collection_id, user_id) 
+                    VALUES (:collection_id, :user_id)""")
+        db.session.execute(sql, {"collection_id":collection_id, "user_id":user_id})
+        db.session.commit()
+    except:
+        return False
+    return True
+
+def get_collection_owners(collection_id):
+    try:
+        sql = text("""SELECT CO.user_id AS user_id, U.username AS name
+                   FROM collection_owner CO, users U
+                   WHERE CO.collection_id=:collection_id AND U.id=CO.user_id""")
+        result = db.session.execute(sql, {"collection_id":collection_id})
+        owners = result.fetchall()
+        return owners
+    except:
+        return False
+
+def is_collection_owner(collection_id, user_id):
+    try:
+        sql = text("""SELECT user_id, collection_id
+                   FROM collection_owner
+                   WHERE collection_id=:collection_id AND user_id=:user_id""")
+        result = db.session.execute(sql, {"collection_id":collection_id, "user_id":user_id})
+        rows = len(result.fetchall())
+        if rows > 0:
+            return True
+        else:
+            return False
+    except:
+        return False

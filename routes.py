@@ -78,15 +78,22 @@ def get_sheet_collections():
     collections = sheets.get_collections()
     return render_template("sheet_collections.html", collections=collections)
 
-@app.route("/sheet_collections/<int:id>", methods=["GET"])
+@app.route("/sheet_collections/<int:id>", methods=["GET", "POST"])
 def get_sheet_collection(id):
     user_id = users.user_id()
     if user_id == 0:
         return redirect("/login")
     
-    collection = sheets.get_collection(id)
-    coll_sheets = sheets.get_sheets(id)
-    return render_template("sheet_collection.html", collection=collection, coll_sheets=coll_sheets)
+    if request.method == "GET":
+        collection = sheets.get_collection(id)
+        coll_sheets = sheets.get_sheets(id)
+        owners = sheets.get_collection_owners(id)
+        is_collection_owner = sheets.is_collection_owner(id, user_id)
+        return render_template("sheet_collection.html", collection=collection, coll_sheets=coll_sheets, owners=owners, is_collection_owner=is_collection_owner)
+    if request.method == "POST":
+        users.check_csrf()
+        sheets.add_collection_owner(user_id, id)
+        return redirect(f"/sheet_collections/{id}")
 
 @app.route("/sheet_collections/<int:id>/new_sheet", methods=["GET", "POST"])
 def new_sheet(id):

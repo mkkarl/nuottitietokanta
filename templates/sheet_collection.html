@@ -34,6 +34,40 @@
 
 <a href="/sheet_collections/{{ collection.id }}/new_sheet">Lisää nuotti</a>
 
+<h3>Kokoelman omistajat</h3>
 
+{% if not owners%}
+
+Kokoelmalla ei ole omistajia.
+
+{% else %}
+
+<table>
+    <tr>
+        <th>Omistaja</th>
+    </tr>
+
+    {% for owner in owners %}
+    <tr>
+        <td>{{ owner.name }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endif %}
+
+{% if is_collection_owner %}
+
+Omistat tämän kokelman.
+
+{% else %}
+
+<form action="/sheet_collections/{{ collection.id }}" method="post">
+    <input type="submit" value="Lisää itsesi kokoelman omistajaksi">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+</form>
+
+{% endif %}
 
 {% endblock %}

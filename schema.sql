@@ -20,3 +20,8 @@ CREATE TABLE sheet (
     creator TEXT,
     artist TEXT
 );
+
+CREATE TABLE collection_owner (
+    user_id INTEGER REFERENCES users,
+    collection_id INTEGER REFERENCES sheet_collection
+);
