@@ -5,10 +5,18 @@
 <h2>Selaa nuottikokoelmia</h2>
 
 <table>
-    <tr><th>Kokoelman nimi</th><th>Kokoelman tyyppi</th></tr>
+    <tr>
+        <th>Kokoelman nimi</th>
+        <th>Kokoelman tyyppi</th>
+        <th>Omistajien lkm</th>
+    </tr>
 
     {% for collection in collections %}
-    <tr><td>{{ collection.name }}</td><td>{{ collection.type }}</td><td><a href="/sheet_collections/{{ collection.id }}">Avaa</a></td></tr>
+    <tr>
+        <td><a href="/sheet_collections/{{ collection.id }}">{{ collection.name }}</a></td>
+        <td>{{ collection.type }}</td>
+        <td>{{ collection.count }}</td>
+    </tr>
     {% endfor %}
 
 </table>

@@ -13,7 +13,11 @@ def new_collection(collection_name, collection_type):
 
 def get_collections():
     try:
-        sql = text("SELECT id, name, type FROM sheet_collection")
+        sql = text("""SELECT SC.id, SC.name, SC.type, CO.count
+                    FROM sheet_collection SC LEFT JOIN (
+                    SELECT collection_id, COUNT(*)
+                    FROM collection_owner
+                    GROUP BY collection_id) CO ON SC.id = CO.collection_id;""")
         result = db.session.execute(sql)
         collections = result.fetchall()
         return collections
